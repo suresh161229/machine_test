@@ -19,12 +19,12 @@ class Page2 extends StatelessWidget {
         length: 3,
         child: Column(
           children: [
-            TabBar(
+            const TabBar(
               labelColor: Colors.black,
               tabs: [
-               const Tab(text: 'Tab 1'),
-               const Tab(text: 'Tab 2'),
-                const Tab(text: 'Tab 3'),
+               Tab(text: 'Tab 1'),
+               Tab(text: 'Tab 2'),
+                Tab(text: 'Tab 3'),
               ],
             ),
             Expanded(
@@ -33,28 +33,27 @@ class Page2 extends StatelessWidget {
                   Tab1(
                     widget: Column(
                       children: [
-                        Expanded(child: Text('')),
+                        const Expanded(child: Text('')),
                         Column(
                         children: [
                           
                           ElevatedButton(onPressed: () {
                             Get.toNamed('/page3');
-                          }, child: Text('Go to Page 3')),
+                          }, child: const Text('Go to Page 3')),
                           const SizedBox(height: 20),
                           ElevatedButton(
                             onPressed: () {
                               Get.dialog(
                                 AlertDialog(
-                                  title: Text(''),
+                                  title: Container(
+                                    alignment: Alignment.topRight,
+                                    child:  CircleAvatar(
+                                      child: IconButton(onPressed: (){
+                                        Get.back();
+                                    
+                                      }, icon: const Icon(Icons.close)),
+                                    )),
                                   content: Popup1(key: key),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      onPressed: () {
-                                        Get.back(); // Close the dialog
-                                      },
-                                      child: Text('Close'),
-                                    ),
-                                  ],
                                 ),
                               );
                             },
@@ -62,11 +61,11 @@ class Page2 extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Expanded(child: Text('')),
+                      const Expanded(child: Text('')),
                       ],
                     ),
                   ),
-                  Tab2(),
+                  const Tab2(),
                   Tab3(widget: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

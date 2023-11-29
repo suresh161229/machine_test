@@ -9,37 +9,41 @@ class Popup1 extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SizedBox(
-        height: size.height/3,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+      height: size.height / 9,
+      child: Stack(
+        alignment: Alignment.topRight,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              ElevatedButton(
-                onPressed: () {
-                  Get.toNamed('/page3');
-                },
-                child: const Text('Go to Page 3'),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  Get.back(); // Close the popup
-                  Get.off(() => Page2(
+              const Expanded(child: SizedBox()), // Empty SizedBox to occupy space
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.toNamed('/page3');
+                    },
+                    child: const Text('Go to Page 3'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                       Get.back(); // Close the popup
+                      Get.until(ModalRoute.withName('/')); // Close until the dialog
+                      Get.offAll(() => Page2(
                         index: 1,
                       )); // Navigate to the second tab
-                },
-                child: const Text('Go to Tab 2'),
+                    },
+                    child: const Text('Go to Tab 2'),
+                  ),
+                ],
               ),
-              const SizedBox(height: 20),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Get.back();
-              //   },
-              //   child: const Text('Close'),
-              // ),
             ],
           ),
-        ),
+          
+        ],
+      ),
     );
   }
 }
